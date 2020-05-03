@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title *ngIf="isEdit">Edit component</ion-title>
+    <ion-title *ngIf="!isEdit">Add component</ion-title>
+    <div style="float: right; font-size: 25px; margin-right: 10px;">
+      <ion-icon name="close" (click)="dismiss()"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div>
+    <ion-item>
+      <ion-label>Component type</ion-label>
+      <ion-select placeholder="Select" [(ngModel)]="componentDetail.component_type">
+        <ion-select-option value=1>Text input field</ion-select-option>
+        <ion-select-option value=3>Radio button</ion-select-option>
+        <ion-select-option value=5>Submit button (Action)</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </div>
+  
+  <div *ngIf="componentDetail.component_type == 1">
+    <ion-item class="component-div" lines="none">
+      <ion-label color="dark" position="stacked" class="label-padding">Unique identifier (required)</ion-label>
+      <ion-input [(ngModel)]="componentDetail.uuid"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Label</ion-label>
+      <ion-input [(ngModel)]="componentDetail.header"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Regex (Default to *)</ion-label>
+      <ion-input [(ngModel)]="componentDetail.regex"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Placeholder</ion-label>
+      <ion-input [(ngModel)]="componentDetail.placeholder"></ion-input>
+    </ion-item>
+    
+    <ion-list lines="none" class="component-div">
+      <ion-radio-group [(ngModel)]="componentDetail.input_type">
+          <ion-label color="dark" position="stacked" class="label-padding" style="padding-left: 20px; padding-bottom: 5px;">
+            Input type (Select an option)</ion-label>
+    
+        <ion-item lines="none">
+          <ion-label>Single line</ion-label>
+          <ion-radio slot="start" value=1></ion-radio>
+        </ion-item>
+    
+        <ion-item lines="none">
+          <ion-label>Multi line</ion-label>
+          <ion-radio slot="start" value=2></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+
+  <div id="page_one" *ngIf="componentDetail.component_type == 3">
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Unique identifier (required)</ion-label>
+      <ion-input [(ngModel)]="componentDetail.uuid"></ion-input>
+    </ion-item>
+    
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Label</ion-label>
+      <ion-input [(ngModel)]="componentDetail.header"></ion-input>
+    </ion-item>
+  
+    <ion-item lines="none" class="component-div">
+      <ion-list style="margin-bottom: 15px;" lines="none" class="component-div">
+        <ion-label color="dark" position="stacked" class="label-padding">Options&nbsp;&nbsp;
+          <ion-button color="success" (click)="addOptions()">Add</ion-button>
+          <ion-button color="danger" (click)="removeOptions()">Remove</ion-button></ion-label>
+        <ion-item *ngFor="let option of componentDetail.options; let i = index;">
+          <ion-input [(ngModel)]="componentDetail.options[i]"></ion-input>
+        </ion-item>
+      </ion-list>
+    </ion-item>
+  </div>
+
+  <div id="page_one" *ngIf="componentDetail.component_type == 5">
+    <div style="padding-left: 10px; padding-right: 10px;" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">
+        Unique identifier of other input components can be used for an action and will be replaced with the value of the component.
+      </ion-label>
+    </div>
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Unique identifier (required)</ion-label>
+      <ion-input [(ngModel)]="componentDetail.uuid"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">Label</ion-label>
+      <ion-input [(ngModel)]="componentDetail.header"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="component-div">
+      <ion-label color="dark" position="stacked" class="label-padding">HTTP Request</ion-label>
+      <ion-input [(ngModel)]="componentDetail.action.url"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="component-div">
+      <ion-segment (ionChange)="httpRequestChange($event)" [(ngModel)]="componentDetail.action.request_type">
+        <ion-segment-button value="GET">
+          <ion-label>GET</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="POST">
+          <ion-label>POST</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="PUT">
+          <ion-label>PUT</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="DELETE">
+          <ion-label>DELETE</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </ion-item>
+
+    <ion-item lines="none" class="component-div" *ngIf="componentDetail.action.request_type != 'GET'">
+      <ion-label color="dark" position="stacked" class="label-padding">Body </ion-label>
+      <ion-textarea [(ngModel)]="componentDetail.action.body"></ion-textarea>
+    </ion-item>
+
+  </div>
+  
+  
+  <div style="padding-top: 50px;"></div>
+
+</ion-content>
+<ion-footer>
+  <ion-button expand="full" color="success" (click)="submitComponent()">Proceed</ion-button>
+</ion-footer>

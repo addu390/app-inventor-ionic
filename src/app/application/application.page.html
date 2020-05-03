@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Application</ion-title>
+    <div style="float: right; font-size: 20px; padding-right: 10px;">
+      <ion-icon *ngIf="!toggle" name="eye-outline" (click)="toggleOrder()"></ion-icon>
+      <ion-icon *ngIf="toggle" name="eye-off-outline" (click)="toggleOrder()"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="isLoading">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div>
+    <div style="text-align: center; border-bottom: 1px solid #d3d3d3;">
+      <h2 *ngIf="application" position="floating">{{ application.name }}</h2>
+    </div>
+    <ion-list>
+      <ion-reorder-group (ionItemReorder)="reorderItems($event)" disabled="{{toggle}}">
+      <ion-item-sliding *ngFor="let component of components">
+        <ion-item lines="none">
+          
+          <div *ngIf="component.component_type == 1" class="component-div">
+            <div *ngIf="component.input_type == 1">
+              <ion-label color="dark" position="stacked" class="label-padding">{{ component.header }}</ion-label>
+              <ion-input placeholder="{{component.placeholder}}" [(ngModel)]="component.values"></ion-input>
+            </div>
+            <div *ngIf="component.input_type == 2">
+              <ion-label color="dark" position="stacked" class="label-padding">{{ component.header }}</ion-label>
+              <ion-textarea placeholder="{{component.placeholder}}" [(ngModel)]="component.values"></ion-textarea>
+            </div>
+          </div>
+
+          <div *ngIf="component.component_type == 3" class="component-div">
+              <ion-list lines="none">
+                <ion-label color="dark" position="stacked" class="label-padding">{{ component.header }} (Select an option)</ion-label>
+                <ion-radio-group [(ngModel)]="component.values">
+                  <ion-item *ngFor="let option of component.options; let i = index;">
+                    <ion-label>{{option}}</ion-label>
+                    <ion-radio full [value]="option"></ion-radio>
+                  </ion-item>
+                </ion-radio-group>
+              </ion-list>
+          </div>
+
+          <div *ngIf="component.component_type == 5" class="component-div">
+            <ion-button style="height: 3em;" expand="full" color="success" (click)="makeRequest(component)">{{ component.header }}</ion-button>
+          </div>
+          
+          <ion-reorder slot="end"></ion-reorder>
+        
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option (click)="editComponent(component)" color="primary">&nbsp;&nbsp;Edit&nbsp;&nbsp;</ion-item-option>
+          <ion-item-option (click)="deleteComponent(component)" color="danger">Delete</ion-item-option>
+        </ion-item-options>
+    </ion-item-sliding>
+  </ion-reorder-group>
+    </ion-list>
+  </div>
+
+  <div style="padding-top: 50px;"></div>
+</ion-content>
+
+<ion-footer>
+  <ion-button *ngIf="!toggle" expand="full" color="success" (click)="presentModal()">Add new component</ion-button>
+</ion-footer>

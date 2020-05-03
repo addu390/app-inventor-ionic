@@ -1,0 +1,8 @@
+{
+  "name": "app-builder-frontend",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

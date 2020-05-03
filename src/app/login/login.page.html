@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="!isAuthenticated">Login</ion-title>
+    <ion-title *ngIf="isAuthenticated">User details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="isLoading" style="text-align: center; padding-top: 10%">
+    <ion-spinner></ion-spinner>
+  </div>
+  <div *ngIf="!isLoading">
+    <div *ngIf="isAuthenticated">
+        <div *ngIf="userDetails">
+          <div class="column">
+            <img [src]="userDetails.imageUrl" style="border-radius: 5%"/>
+          </div>
+          <div class="login-text">
+            <h1 style="margin-bottom: 0px">{{userDetails.displayName}} <ion-icon color="success" name="checkmark-circle" style="font-size: 20px;"></ion-icon></h1>
+            <p style="margin: 0px;">{{userDetails.email}}</p>
+          </div>
+        </div>
+        <div style="border-bottom: 1px solid #d3d3d3;">
+          <hr>
+        </div>
+    </div>
+    <div style="text-align: center; padding-top: 10%;" *ngIf="!isAuthenticated">
+      <ion-button color="primary" (click)="loginUser()"><ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Sign in with Google</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div style="text-align: center;" *ngIf="isAuthenticated">
+  <p (click)="logoutUser()">Logout </p>
+  </div>
+</ion-footer>

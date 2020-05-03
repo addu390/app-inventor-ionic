@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Dashboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div>
+    <div style="padding: 10px; border-bottom: solid #E8E8E8 1px;">
+      <ion-label color="dark" position="stacked" class="label-padding">
+        List of applications (Application is a group of components and actions designed for end users)</ion-label>
+    </div>
+    <ion-list>
+      <ion-item *ngFor="let application of applications" routerLink="/application/{{application.app_id}}">
+        <div style="width: 100%;" >
+          <p>{{application.name}}</p>
+        </div>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-button *ngIf="!toggle" expand="full" color="success" (click)="createApplication()">Create new application</ion-button>
+</ion-footer>

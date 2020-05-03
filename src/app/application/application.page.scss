@@ -1,0 +1,45 @@
+ion-input {
+    --placeholder-font-weight: 250;
+    --background: #F5F5F5;
+    // border-radius: 5px;
+    // padding-left: 10px;
+    // padding-right: 10px;
+}
+
+ion-textarea {
+    --placeholder-font-weight: 250;
+    --background: #F5F5F5;
+    // border-radius: 5px;
+    // padding-left: 10px;
+    // padding-right: 10px;
+}
+
+.grey-border {
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 10px;
+}
+
+.component-div {
+    margin-top: 22px; 
+    width: 100%;
+    padding-right: 10px;
+}
+
+.label-padding{
+    padding-bottom: 5px;
+}
+
+ion-spinner {
+    stroke: #ff0000;
+    fill: #8b0000;
+    position: fixed;
+    z-index: 999;
+    height: 5em;
+    width: em;
+    overflow: show;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }

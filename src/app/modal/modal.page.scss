@@ -1,0 +1,31 @@
+ion-input {
+    --placeholder-font-weight: 250;
+    --background: #F5F5F5;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ion-textarea {
+    --placeholder-font-weight: 250;
+    --background: #F5F5F5;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.grey-border {
+    border-bottom: 1px solid #d3d3d3;
+    padding-bottom: 10px;
+}
+
+.component-div {
+    margin-top: 20px; 
+    width: 100%;
+}
+
+.label-padding{
+    padding-bottom: 5px;
+}
+
+.red {
+    color: red;
+}
