@@ -1,5 +1,5 @@
 
-**App builder** - Ionic 5 project (Work in progress)
+**App Inventor** - Ionic 5 project (Work in progress),
 Previously called as **app-builder-frontend**
 
 Installation on local machine :
@@ -21,8 +21,8 @@ Installation on local machine :
 - To test the app, you can use `capacitator` : https://capacitor.ionicframework.com/docs/getting-started/with-ionic/
 - To start the app, run `ionic build`, `ionic capacitor run <platform> --livereload` or `ionic lab` or `ionic serve -l`, note that native features cannot be tested in browser.
 
-**Backend for app-builder**
-- https://github.com/addu390/app-builder-backend.
+**Backend for app-inventor**
+- https://github.com/addu390/app-inventor-backend.
 - Django web framework, MySQL database.
 
 
