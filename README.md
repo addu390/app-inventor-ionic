@@ -1,5 +1,6 @@
 
 **App builder** - Ionic 5 project (Work in progress)
+Previously called as **app-builder-frontend**
 
 Installation on local machine :
 
