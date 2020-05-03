@@ -5,7 +5,6 @@ export class ComponentField {
     public uuid: string;
     public header: string;
     public component_type: number;
-    
     public values: string;
     
     // For Radio and multi select
