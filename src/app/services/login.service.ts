@@ -36,14 +36,16 @@ interface TokenInfo {
 export class LoginService {
   user = new BehaviorSubject<User>(null);
   private tokenExpirationTimer: any;
-  url = "http://addu390.pythonanywhere.com"
-  // url = "http://localhost:8000"
+  // url = "http://addu390.pythonanywhere.com"
+  url = "http://localhost:8000"
+  
+  private FIVE_MINUTES = 300000
+  private DEFAULT_TIMEOUT = 300
 
   constructor(
     private http: HttpClient,
     private storageService: StorageService,
-    private router: Router,
-    private googlePlus: GooglePlus) {
+    private router: Router) {
 
   }
 
@@ -76,19 +78,24 @@ export class LoginService {
   }
 
   autoLogout(expirationDuration: number) {
+    if (expirationDuration <= 0) { 
+      expirationDuration = this.DEFAULT_TIMEOUT 
+    } else if (expirationDuration > this.FIVE_MINUTES) {
+      expirationDuration = expirationDuration - this.FIVE_MINUTES;
+    }
     this.tokenExpirationTimer = setTimeout(() => {
       this.refreshToken().subscribe(data => {
         let auth = JSON.parse(JSON.stringify(data))
-        this.getTokenInfo(auth["access_token"]).subscribe(data => {
-          let userData = {
-            "accessToken": auth["access_token"],
-            "idToken": auth["id_token"],
-          }
-          this.userCreateOrUpdate(userData).subscribe(res => {
+        let userData = {
+          "accessToken": auth["access_token"],
+          "idToken": auth["id_token"],
+        }
+        this.userCreateOrUpdate(userData).subscribe(userDetails => {
+          this.getTokenInfo(auth["access_token"]).subscribe(data => {
             console.log("Refresh token and auto login the user")
           }, error => {
-            this.logout();  
-          });
+            this.logout();
+          })
         }, error => {
           this.logout();
         })
