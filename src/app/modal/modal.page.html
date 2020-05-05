@@ -101,8 +101,8 @@
     </ion-item>
 
     <ion-item lines="none" class="component-div">
-      <ion-label color="dark" position="stacked" class="label-padding">HTTP Request</ion-label>
-      <ion-input [(ngModel)]="componentDetail.action.url"></ion-input>
+      <ion-label color="dark" position="stacked" class="label-padding">HTTP Request URL</ion-label>
+      <ion-input [(ngModel)]="componentDetail.action.url" placeholder="https://pyblog.xyz"></ion-input>
     </ion-item>
 
     <ion-item lines="none" class="component-div">
@@ -122,9 +122,9 @@
       </ion-segment>
     </ion-item>
 
-    <ion-item lines="none" class="component-div" *ngIf="componentDetail.action.request_type != 'GET'">
-      <ion-label color="dark" position="stacked" class="label-padding">Body </ion-label>
-      <ion-textarea [(ngModel)]="componentDetail.action.body"></ion-textarea>
+    <ion-item lines="none" class="component-div" *ngIf="componentDetail.action.request_type != 'GET' && componentDetail.action.request_type != 'DELETE'">
+      <ion-label color="dark" position="stacked" class="label-padding">Body (Optional)</ion-label>
+      <ion-textarea placeholder="Example : {'value': true}" [(ngModel)]="componentDetail.action.body"></ion-textarea>
     </ion-item>
 
   </div>

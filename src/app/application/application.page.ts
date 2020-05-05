@@ -98,12 +98,22 @@ export class ApplicationPage implements OnInit {
   makeRequest(component: ComponentField) {
     this.isLoading = true;
     let uuidReplacedUrl = this.componentMap(component.action.url);
-    this.actionService.get(uuidReplacedUrl).subscribe(data => {
-      console.log(data);
-      this.isLoading = false;
-      this.presentApiOutput(data, uuidReplacedUrl)
-    })
-    this.isLoading = false;
+    if (component.action.request_type == "GET") {
+      this.actionService.get(uuidReplacedUrl).subscribe(data => {
+        this.presentApiOutput(data, uuidReplacedUrl)
+      }, error => {
+        this.presentApiOutput(error, uuidReplacedUrl)
+      })
+    }
+    else if (component.action.request_type == "POST" || component.action.request_type == "PUT") {
+      let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
+      console.log(replacedPostData)
+      this.actionService.post(uuidReplacedUrl, replacedPostData).subscribe(data => {
+        this.presentApiOutput(data, uuidReplacedUrl)
+      }, error => {
+        this.presentApiOutput(error, uuidReplacedUrl)
+      })
+    }
   }
 
   componentMap(url: string) {
@@ -120,6 +130,7 @@ export class ApplicationPage implements OnInit {
       message: '<pre><code>' + JSON.stringify(data) + '</code></pre>',
       buttons: ['OK']
     });
+    this.isLoading = false;
     await alert.present();
   }
 

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, Subject, BehaviorSubject } from 'rxjs';
-import { map, tap, take, exhaustMap } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
+import { tap, take, exhaustMap } from 'rxjs/operators';
 import { StorageService } from './storage.service';
-import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import { User } from '../login/user.model';
 import { Router } from '@angular/router';
 
@@ -60,7 +59,6 @@ export class LoginService {
   }
 
   getTokenInfo(accessToken: string) {
-    console.log(accessToken)
     return this.http.get<TokenInfo>("https://www.googleapis.com/oauth2/v3/tokeninfo?access_token=" + accessToken)
     .pipe(tap(result => {
       const expirationDate = new Date(new Date().getTime() + +result.expires_in * 1000)

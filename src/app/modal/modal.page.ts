@@ -46,6 +46,14 @@ export class ModalPage implements OnInit {
       if (this.componentDetail.uuid == null || this.componentDetail.uuid.length < 5) {
         this.presentToast("Unique Identifier is a mandatory field with atleast 5 characters")
       }
+      else if (this.componentDetail.component_type == 5 && 
+        this.componentDetail.action.request_type != "GET" &&
+        this.componentDetail.action.body != null &&
+        this.componentDetail.action.body.trim() != null &&
+        this.componentDetail.action.body.trim() != "" &&
+        !this.isJson(this.componentDetail.action.body)) {
+          this.presentToast("Invalid JSON");
+      }
       else {
         if (this.isEdit) {
           this.loginService.componentUpdate(this.componentDetail, this.applicationId, this.componentId).subscribe( data => {
@@ -63,6 +71,15 @@ export class ModalPage implements OnInit {
           });
         }
       }
+  }
+
+  isJson(string: string) {
+    try {
+      JSON.parse(this.componentDetail.action.body);
+    } catch (e) {
+      return false;
+    }
+    return true;
   }
 
   addOptions() {
