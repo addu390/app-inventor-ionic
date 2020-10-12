@@ -114,6 +114,11 @@ Installation on local machine :
 
 <img src="https://pyblog.xyz/wp-content/uploads/2020/10/delete.png?raw=true" width="300"/>
 
+15. **List of applications**
+- You can create any number of applications (With a practically high upper cap of-course), each application has Components (Inputs Fields) and Actions (Such as a Submit button).
+
+<img src="https://pyblog.xyz/wp-content/uploads/2020/10/applications-appinventor.png?raw=true" width="300"/>
+
 #### What's cooking?
 - Support for MySQL and Elastic Search queries.
 - Enter Connection details (TCP/IP, SSH or Socket) for database connection and add placeholders in queries.
