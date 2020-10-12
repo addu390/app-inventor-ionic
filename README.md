@@ -109,3 +109,12 @@ Installation on local machine :
 
 <img src="https://pyblog.xyz/wp-content/uploads/2020/10/put-output.png?raw=true" width="300"/>
 
+14. **DELETE API Request**
+- GET, POST, PUT and DELETE are now supports for all components.
+
+<img src="https://pyblog.xyz/wp-content/uploads/2020/10/delete.png?raw=true" width="300"/>
+
+#### WHat's cooking?
+- Support for MySQL and Elastic Search queries.
+- Enter Connection details (TCP/IP, SSH or Socket) for database connection and add placeholders in queries.
+

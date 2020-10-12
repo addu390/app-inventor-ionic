@@ -105,6 +105,8 @@ export class ApplicationPage implements OnInit {
         this.presentApiOutput(error, uuidReplacedUrl)
       })
     }
+    
+    // TODO: Refactor this code - Testing thr funtionality for now.
     else if (component.action.request_type == "POST") {
       let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
       console.log(replacedPostData)
@@ -118,6 +120,15 @@ export class ApplicationPage implements OnInit {
       let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
       console.log(replacedPostData)
       this.actionService.put(uuidReplacedUrl, replacedPostData).subscribe(data => {
+        this.presentApiOutput(data, uuidReplacedUrl)
+      }, error => {
+        this.presentApiOutput(error, uuidReplacedUrl)
+      })
+    }
+    else if (component.action.request_type == "DELETE") {
+      let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
+      console.log(replacedPostData)
+      this.actionService.delete(uuidReplacedUrl).subscribe(data => {
         this.presentApiOutput(data, uuidReplacedUrl)
       }, error => {
         this.presentApiOutput(error, uuidReplacedUrl)
