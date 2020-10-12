@@ -105,10 +105,19 @@ export class ApplicationPage implements OnInit {
         this.presentApiOutput(error, uuidReplacedUrl)
       })
     }
-    else if (component.action.request_type == "POST" || component.action.request_type == "PUT") {
+    else if (component.action.request_type == "POST") {
       let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
       console.log(replacedPostData)
       this.actionService.post(uuidReplacedUrl, replacedPostData).subscribe(data => {
+        this.presentApiOutput(data, uuidReplacedUrl)
+      }, error => {
+        this.presentApiOutput(error, uuidReplacedUrl)
+      })
+    }
+    else if (component.action.request_type == "PUT") {
+      let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
+      console.log(replacedPostData)
+      this.actionService.put(uuidReplacedUrl, replacedPostData).subscribe(data => {
         this.presentApiOutput(data, uuidReplacedUrl)
       }, error => {
         this.presentApiOutput(error, uuidReplacedUrl)
