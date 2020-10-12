@@ -114,7 +114,7 @@ Installation on local machine :
 
 <img src="https://pyblog.xyz/wp-content/uploads/2020/10/delete.png?raw=true" width="300"/>
 
-#### WHat's cooking?
+#### What's cooking?
 - Support for MySQL and Elastic Search queries.
 - Enter Connection details (TCP/IP, SSH or Socket) for database connection and add placeholders in queries.
 
