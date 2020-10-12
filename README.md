@@ -98,3 +98,14 @@ Installation on local machine :
 
 <img src="https://pyblog.xyz/wp-content/uploads/2020/05/10_edit_components.png?raw=true" width="300"/>
 
+13. **An other example for PUT request**
+- Add a placeholder in request body and the URL (Optional) for the PUT API request.
+- Taking an example of JSON Placeholder - Posts.
+
+<img src="https://pyblog.xyz/wp-content/uploads/2020/10/put-request.png?raw=true" width="300"/>
+
+- The API Response is currently a pop-up, which is displayed as a pre-formatted JSON.
+- Note: There would be an other Component to display JSON on submit in a user-friendly format.
+
+<img src="https://pyblog.xyz/wp-content/uploads/2020/10/put-output.png?raw=true" width="300"/>
+
