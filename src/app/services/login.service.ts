@@ -178,6 +178,12 @@ export class LoginService {
     }));
   }
 
+  applicationDelete(appId: string) {
+    return this.user.pipe(take(1), exhaustMap(user => {
+      return this.http.delete(this.url + "/v1/application/" + user.userId + "/" + appId);
+    }));
+  }
+
   applicationCreateOrUpdate(postData: any, appId: string) {
     return this.user.pipe(take(1), exhaustMap(user => {
       return this.http.post(this.url + "/v1/application/" + user.userId + "/" + appId, postData);

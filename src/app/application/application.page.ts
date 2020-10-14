@@ -105,8 +105,7 @@ export class ApplicationPage implements OnInit {
         this.presentApiOutput(error, uuidReplacedUrl)
       })
     }
-    
-    // TODO: Refactor this code - Testing thr funtionality for now.
+    // TODO: Refactor to combine GET and DELETE, POST and PUT.
     else if (component.action.request_type == "POST") {
       let replacedPostData = JSON.stringify(JSON.parse(this.componentMap(component.action.body)));
       console.log(replacedPostData)

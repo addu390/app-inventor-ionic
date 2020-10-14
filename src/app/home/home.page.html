@@ -18,12 +18,20 @@
       <ion-label color="dark" position="stacked" class="label-padding">
         List of applications (Application is a group of components and actions designed for end users)</ion-label>
     </div>
+
     <ion-list>
-      <ion-item *ngFor="let application of applications" routerLink="/application/{{application.app_id}}">
+      <ion-item-sliding *ngFor="let application of applications" routerLink="/application/{{application.app_id}}">
+      <ion-item>
         <div style="width: 100%;" >
           <p>{{application.name}}</p>
         </div>
       </ion-item>
+
+      <ion-item-options side="end">
+        <!-- <ion-item-option (click)="editComponent(component)" color="primary">&nbsp;&nbsp;Edit&nbsp;&nbsp;</ion-item-option> -->
+        <ion-item-option (click)="deleteApplication(application)" color="danger">Delete</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
     </ion-list>
 
   </div>

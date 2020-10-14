@@ -75,5 +75,15 @@ export class HomePage implements OnInit {
       this.applications = applications
     })
   }
+
+  deleteApplication(application) {
+    console.log("here")
+    this.loginService.applicationDelete(application["app_id"]).subscribe(data => {
+      this.getApplications()
+      
+      // TODO: Remove this and fix the navigationn to application page after deletion.
+      this.router.navigate(['/home'])
+    })
+  }
   
 }
