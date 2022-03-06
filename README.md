@@ -1,7 +1,9 @@
 
 # App Inventor - Ionic 5
 
-⚠️ Deprecated 
+⛔️ Deprecated
+
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
 
 Installation on local machine :
 
