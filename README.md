@@ -1,6 +1,7 @@
 
-**App Inventor** - Ionic 5 project (Work in progress),
-Previously called as **app-builder-frontend**
+# App Inventor - Ionic 5
+
+⚠️ Deprecated 
 
 Installation on local machine :
 
